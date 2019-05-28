@@ -17,4 +17,4 @@ Please file [issues and feature requests](https://github.com/piaoniao/bidirectio
 
 ## Thanks
 
-![toufikzitouni/flutter-bidirectional_scrollview_plugin](https://github.com/toufikzitouni/flutter-bidirectional_scrollview_plugin)
+[toufikzitouni/flutter-bidirectional_scrollview_plugin](https://github.com/toufikzitouni/flutter-bidirectional_scrollview_plugin)
