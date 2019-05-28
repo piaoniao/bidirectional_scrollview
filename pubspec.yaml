@@ -1,0 +1,12 @@
+name: bidirectional_scrollview
+description: A bidirectional scrollview.
+version: 0.0.7
+author: PiaoNiao <scausum@gmail.com>
+homepage: https://github.com/piaoniao/bidirectional_scrollview
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+environment:
+  sdk: '>=2.2.0 <3.0.0'

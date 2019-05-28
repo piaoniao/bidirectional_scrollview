@@ -1,0 +1,13 @@
+name: bidirectional_scrollview_example
+description: Demonstrates how to use the bidirectional_scrollview.
+
+dependencies:
+  flutter:
+    sdk: flutter
+  bidirectional_scrollview:
+    path: ../
+
+flutter:
+  uses-material-design: false
+  assets:
+  - assets/pic_map.jpg
