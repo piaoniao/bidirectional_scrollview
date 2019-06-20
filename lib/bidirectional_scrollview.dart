@@ -99,11 +99,12 @@ class _BidirectionalScrollViewState extends State<BidirectionalScrollView> with 
     double dx = position.dx - xPos;
     double dy = position.dy - yPos;
 
-    if (widget.maxOffsetDelta > 0.0) {
-      if (dx > widget.maxOffsetDelta) dx = widget.maxOffsetDelta;
-      if (dx < -widget.maxOffsetDelta) dx = -widget.maxOffsetDelta;
-      if (dy > widget.maxOffsetDelta) dy = widget.maxOffsetDelta;
-      if (dy < -widget.maxOffsetDelta) dy = -widget.maxOffsetDelta;
+    final maxOffsetDelta = widget.maxOffsetDelta;
+    if (maxOffsetDelta > 0.0) {
+      if (dx > maxOffsetDelta) dx = maxOffsetDelta;
+      if (dx < -maxOffsetDelta) dx = -maxOffsetDelta;
+      if (dy > maxOffsetDelta) dy = maxOffsetDelta;
+      if (dy < -maxOffsetDelta) dy = -maxOffsetDelta;
     }
 
     double newXPosition = xViewPos + dx;
