@@ -10,7 +10,7 @@ class BidirectionalScrollView extends StatefulWidget {
   _BidirectionalScrollViewState _state;
 
   @override
-  State<StatefulWidget> createState() => _state = _BidirectionalScrollViewState(child, maxOffsetDelta, scrollListener);
+  State<StatefulWidget> createState() => _state = _BidirectionalScrollViewState();
 
   // set x and y scroll offset of the overflowed widget
   set offset(Offset offset) {
@@ -52,24 +52,10 @@ class _BidirectionalScrollViewState extends State<BidirectionalScrollView> with 
   final GlobalKey _containerKey = GlobalKey();
   final GlobalKey _positionedKey = GlobalKey();
 
-  Widget _child;
-  double _maxOffsetDelta = 0.0;
-  ValueChanged<Offset> _scrollListener;
-
   double xPos = 0.0;
   double yPos = 0.0;
   double xViewPos = 0.0;
   double yViewPos = 0.0;
-
-  _BidirectionalScrollViewState(Widget child, double maxOffsetDelta, ValueChanged<Offset> scrollListener) {
-    _child = child;
-    if (maxOffsetDelta != null) {
-      _maxOffsetDelta = maxOffsetDelta;
-    }
-    if (scrollListener != null) {
-      _scrollListener = scrollListener;
-    }
-  }
 
   set offset(Offset offset) {
     setState(() {
@@ -113,11 +99,11 @@ class _BidirectionalScrollViewState extends State<BidirectionalScrollView> with 
     double dx = position.dx - xPos;
     double dy = position.dy - yPos;
 
-    if (_maxOffsetDelta > 0.0) {
-      if (dx > _maxOffsetDelta) dx = _maxOffsetDelta;
-      if (dx < -_maxOffsetDelta) dx = -_maxOffsetDelta;
-      if (dy > _maxOffsetDelta) dy = _maxOffsetDelta;
-      if (dy < -_maxOffsetDelta) dy = -_maxOffsetDelta;
+    if (widget.maxOffsetDelta > 0.0) {
+      if (dx > widget.maxOffsetDelta) dx = widget.maxOffsetDelta;
+      if (dx < -widget.maxOffsetDelta) dx = -widget.maxOffsetDelta;
+      if (dy > widget.maxOffsetDelta) dy = widget.maxOffsetDelta;
+      if (dy < -widget.maxOffsetDelta) dy = -widget.maxOffsetDelta;
     }
 
     double newXPosition = xViewPos + dx;
@@ -164,8 +150,8 @@ class _BidirectionalScrollViewState extends State<BidirectionalScrollView> with 
   }
 
   void _sendScrollValues() {
-    if (_scrollListener != null) {
-      _scrollListener(Offset(-xViewPos, -yViewPos));
+    if (widget.scrollListener != null) {
+      widget.scrollListener(Offset(-xViewPos, -yViewPos));
     }
   }
 
@@ -180,7 +166,7 @@ class _BidirectionalScrollViewState extends State<BidirectionalScrollView> with 
           child: Stack(
             overflow: Overflow.visible,
             children: <Widget>[
-              Positioned(key: _positionedKey, top: yViewPos, left: xViewPos, child: _child),
+              Positioned(key: _positionedKey, top: yViewPos, left: xViewPos, child: widget.child),
             ],
           )),
     );
